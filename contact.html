@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 
 </head>
@@ -15,27 +16,33 @@
             <a href="contact.html">Contact us</a>
         </nav>
     </header>
-    <main class="contactPage">
-        <form class="mainForm">
-            <h1>Please fill this form</h1>
-            <label >Name:
-                <input type="text" placeholder="Enter Name"></label><br><br>
-            <label >Email:
-                <input type="email" placeholder="Enter Email"></label><br><br>
-            <label >Phone:
-                <input type="number" placeholder="Enter Phone"></label><br><br>
-            <label >Message:
-                <textarea name="" id=""></textarea>
-            <button>Submit</button>
-        </form>
-        <section class="companyInfo">
-        <h3>About us</h3>
-        <ul>name</ul>
-        <ul>email</ul>
-        <ul>phone</ul>
-        <ul>address</ul>
-        <h3>Check out our social media</h3>
-        </section>
-    </main>
+    <section class="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-wrapper">
+                <div class="contact-form">
+                    <h3>Send us a message</h3>
+                    <form>
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Your Name">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Your Email">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Your Message"></textarea>
+                        </div>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p><i class="fas fa-phone"></i>+251976567890</p>
+                    <p><i class="fas fa-envelope"></i>atgotravel@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i>Bole, TK bldg, 3rd floor</p>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
