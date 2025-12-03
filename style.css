@@ -131,6 +131,21 @@ nav a:hover {
   margin-bottom: 5px;
 }
 
+@media (max-width: 768px){
+  .home-cards{
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 16px;
+  }
+
+  .city-card{
+    min-width: 220px;
+    scroll-snap-align: start;
+  }
+}
+
 
 /*  WHY CHOOSE US SECTION */
 .why-choose{
@@ -305,12 +320,14 @@ footer p {
 }
 
 /* RESPONSIVE for destination page */
+
 @media (max-width: 768px) {
   .chooseclass {
     flex-direction: column;
     align-items: center;
   }
 }
+
 /* contact Page styling */
 
 .contact{
