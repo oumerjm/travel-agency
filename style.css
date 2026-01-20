@@ -489,3 +489,38 @@ textarea:focus {
   cursor: pointer;
   padding: 18px 0;
 }
+
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* Responsive Navigation Menu */
+#menu-icon {
+    display: none;
+}
+
+@media (max-width: 700px) {
+    #menu-icon {
+        display: block;
+        cursor: pointer;
+        font-size: 28px;
+        color: white;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #333;
+        position: absolute;
+        top: 70px;
+        left: 0;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+}
