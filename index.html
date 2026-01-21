@@ -17,15 +17,18 @@
   <body>
     <header>
       <nav>
-        <a href="index.html">Home</a>
-        <a href="destination.html">Destinations</a>
-        <a href="contact.html">Contact us</a>
+        <i class="fas fa-bars" id="menu-icon"></i>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html">Home</a>
+            <a href="destination.html">Destinations</a>
+            <a href="contact.html">Contact us</a>
+        </div>
       </nav>
     </header>
     <main class="home-container">
       <section class="hero-section">
         <h1>Explore the World with us</h1>
-        <button class="hero-button">Book now!</button>
+        <button class="hero-button" id="home-book-btn">Book now!</button>
       </section>
       <hr />
       <h1 class="destination-head">Our Popular Destinations</h1>
@@ -126,7 +129,7 @@
       </section>
       <hr />
     </main>
-    <footer class="info">
+    <footer class="info" id="footer">
       <h4>Quick links</h4>
 
       <ul>
@@ -148,5 +151,8 @@
       <p>Contact us : +251976567890</p>
       &copy 2025 ATGO Travel Agency
     </footer>
+
+    <script src="script.js"></script>
+
   </body>
 </html>
