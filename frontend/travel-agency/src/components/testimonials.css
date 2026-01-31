@@ -1,0 +1,113 @@
+
+.testimonials-side-list {
+  padding: 50px 20px;
+  max-width: 1200px;
+  margin: 40px auto;
+}
+
+.testimonials-title {
+  font-size: 26px;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+
+.testimonials-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+
+.testimonials-arrow {
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  font-size: 22px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(16,24,40,0.06);
+}
+.testimonials-arrow:hover { transform: scale(1.03); }
+
+
+.testimonials-list {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 6px;
+  -webkit-overflow-scrolling: touch;
+  flex: 1 1 auto;
+}
+
+
+.testimonials-list::-webkit-scrollbar { height: 10px; }
+.testimonials-list::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 8px; }
+.testimonials-list { scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.12) transparent; }
+
+
+.testimonial-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(16,24,40,0.06);
+  display: flex;
+  gap: 18px;
+  padding: 16px;
+  min-width: 360px; 
+  max-width: 420px;
+  align-items: flex-start;
+}
+
+
+.testimonial-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 110px;
+}
+.testimonial-avatar {
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 8px 18px rgba(16,24,40,0.08);
+}
+.testimonial-excerpt {
+  font-style: italic;
+  font-size: 14px;
+  text-align: center;
+  color: #111827;
+}
+
+
+.testimonial-right { flex: 1; }
+.testimonial-full {
+  font-size: 14px;
+  color: #374151;
+  margin-bottom: 12px;
+}
+.testimonial-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.testimonial-stars i { color: #f6c85f; margin-right: 6px; font-size: 15px; }
+.testimonial-author { text-align: right; }
+.testimonial-author strong { display: block; }
+.testimonial-country { font-size: 13px; color: #6b7280; }
+
+
+@media (max-width: 720px) {
+  .testimonials-controls { flex-direction: column; align-items: stretch; gap: 10px; }
+  .testimonials-arrow { align-self: center; }
+  .testimonial-card { min-width: 280px; max-width: none; }
+  .testimonial-left { width: 80px; }
+  .testimonial-excerpt { max-width: 90px; font-size: 13px; }
+}

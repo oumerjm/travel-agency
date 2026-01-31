@@ -1,6 +1,6 @@
 import heroImage from "/images/landing2.jpg";
 import { useEffect, useState } from "react";
-
+import Testimonials from "../components/TestimonialsCard";
 function Home() {
   const [destinations, setDestinations] = useState([]);
   const [search, setSearch] = useState("");
@@ -11,7 +11,7 @@ function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [bookingLoading, setBookingLoading] = useState(false);
-
+ 
   useEffect(() => {
     async function load() {
       setLoading(true);
@@ -212,7 +212,7 @@ function Home() {
 
   </div>
 </section>
-
+<Testimonials />
       {showModal && (
         <div className="modal-overlay">
           <div className="modal-box">
