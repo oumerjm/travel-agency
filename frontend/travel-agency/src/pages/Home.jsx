@@ -1,6 +1,7 @@
 import heroImage from "/images/landing2.jpg";
 import { useEffect, useState } from "react";
 import Testimonials from "../components/TestimonialsCard";
+import WhyChooseUs from "../components/WhyChooseUs";
 function Home() {
   const [destinations, setDestinations] = useState([]);
   const [search, setSearch] = useState("");
@@ -44,57 +45,60 @@ function Home() {
     return /\S+@\S+\.\S+/.test(email);
   };
 
-  const handleBooking = async () => {
-    if (!selectedPlace) {
-      alert("Please select a destination before booking.");
-      return;
-    }
-    if (!bookingData.name.trim() || !bookingData.email.trim() || !bookingData.date) {
-      alert("Please fill name, email and date.");
-      return;
-    }
-    if (!validateEmail(bookingData.email)) {
-      alert("Please enter a valid email address.");
-      return;
-    }
+ const handleBooking = async (e) => {
+  e.preventDefault(); 
 
-    const booking = { ...bookingData, destination: selectedPlace };
+  if (!selectedPlace) {
+    alert("Please select a destination.");
+    return;
+  }
 
-    try {
-      setBookingLoading(true);
+  if (!bookingData.name || !bookingData.email || !bookingData.date) {
+    alert("Fill all fields");
+    return;
+  }
 
-      const res = await fetch("http://localhost:5000/api/bookings", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(booking),
-      });
+  if (!validateEmail(bookingData.email)) {
+    alert("Invalid email");
+    return;
+  }
 
-      const txt = await res.text();
-      let json;
-      try {
-        json = txt ? JSON.parse(txt) : {};
-      } catch (e) {
-        console.warn("Non-JSON booking response:", txt);
-      }
-
-      if (!res.ok) {
-        throw new Error(`Booking failed: ${res.status} ${txt}`);
-      }
-
-      console.log("Booking response:", res.status, json || txt);
-      alert("Booking Successful!");
-      setShowModal(false);
-      setBookingData({ name: "", email: "", date: "" });
-      setSelectedPlace("");
-    } catch (err) {
-      console.error(err);
-      alert("Booking failed: " + (err.message || "unknown error"));
-    } finally {
-      setBookingLoading(false);
-    }
+  const booking = {
+    ...bookingData,
+    destination: selectedPlace
   };
 
-  // Normalize image paths or return full URL
+  try {
+    setBookingLoading(true);
+
+    const res = await fetch("http://localhost:5000/api/bookings", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(booking)
+    });
+
+    if (!res.ok) {
+      const txt = await res.text();
+      throw new Error(txt);
+    }
+
+    alert("Booking Successful ✅");
+
+    setShowModal(false);
+    setBookingData({ name: "", email: "", date: "" });
+    setSelectedPlace("");
+
+  } catch (err) {
+    console.error(err);
+    alert("Booking failed");
+  } finally {
+    setBookingLoading(false);
+  }
+};
+
+  
   const resolveImageSrc = (img) => {
     if (!img || typeof img !== "string") return "/images/placeholder.jpg";
 
@@ -104,18 +108,18 @@ function Home() {
       return trimmed;
     }
 
-    // remove leading "./" if present
+    
     if (trimmed.startsWith("./")) {
       const withoutDot = trimmed.slice(2);
-      // if now starts with images/, ensure leading slash
+      
       return withoutDot.startsWith("images/") ? `/${withoutDot}` : `/${withoutDot}`;
     }
 
-    // if already starts with "/images/" or "images/"
+    
     if (trimmed.startsWith("/images/")) return trimmed;
     if (trimmed.startsWith("images/")) return `/${trimmed}`;
 
-    // fallback: treat as filename inside /images/
+   
     return `/images/${trimmed}`;
   };
 
@@ -133,7 +137,7 @@ function Home() {
         <button
           className="hero-button"
           onClick={() => {
-            // open modal without selecting a place (user can pick inside modal)
+            
             setShowModal(true);
           }}
         >
@@ -151,7 +155,7 @@ function Home() {
         className="search-input"
       />
 
-      {/* Loading / Error UI */}
+      
       {loading && <p style={{ textAlign: "center" }}>Loading destinations…</p>}
       {error && <p style={{ textAlign: "center", color: "crimson" }}>Error: {error}</p>}
 
@@ -185,75 +189,78 @@ function Home() {
             </div>
           ))}
       </section>
-          <section className="why-choose-us">
-  <h2>Why Choose Us</h2>
-
-  <div className="why-grid">
-
-    <div className="why-card">
-      <h3>🌍 Best Destinations</h3>
-      <p>We offer handpicked destinations with unforgettable experiences.</p>
-    </div>
-
-    <div className="why-card">
-      <h3>💰 Affordable Prices</h3>
-      <p>Enjoy premium travel services at budget-friendly prices.</p>
-    </div>
-
-    <div className="why-card">
-      <h3>⭐ Trusted Service</h3>
-      <p>Thousands of happy travelers trust our booking platform.</p>
-    </div>
-
-    <div className="why-card">
-      <h3>📞 24/7 Support</h3>
-      <p>Our team is always ready to help you anytime.</p>
-    </div>
-
-  </div>
-</section>
+<WhyChooseUs />
 <Testimonials />
-      {showModal && (
-        <div className="modal-overlay">
-          <div className="modal-box">
-            <h2>Book Trip</h2>
+ {showModal && (
+  <div className="modal-overlay">
+    <div className="modal-box">
 
-            <input
-              type="text"
-              placeholder="Your Name"
-              value={bookingData.name}
-              onChange={(e) => setBookingData({ ...bookingData, name: e.target.value })}
-            />
-            <input
-              type="email"
-              placeholder="Your Email"
-              value={bookingData.email}
-              onChange={(e) => setBookingData({ ...bookingData, email: e.target.value })}
-            />
-            <input
-              type="date"
-              value={bookingData.date}
-              onChange={(e) => setBookingData({ ...bookingData, date: e.target.value })}
-            />
+      <h2>Book Trip</h2>
 
-            <select value={selectedPlace} onChange={(e) => setSelectedPlace(e.target.value)}>
-              <option value="">Select Destination</option>
-              {destinations.map((dest) => (
-                <option key={dest._id || dest.id || dest.name} value={dest.name}>
-                  {dest.name}
-                </option>
-              ))}
-            </select>
+      <form onSubmit={handleBooking}>
 
-            <div className="modal-buttons">
-              <button onClick={() => setShowModal(false)}>Cancel</button>
-              <button onClick={handleBooking} disabled={bookingLoading}>
-                {bookingLoading ? "Booking..." : "Confirm Booking"}
-              </button>
-            </div>
-          </div>
+        <input
+          type="text"
+          placeholder="Your Name"
+          value={bookingData.name}
+          onChange={(e) =>
+            setBookingData({ ...bookingData, name: e.target.value })
+          }
+          required
+        />
+
+        <input
+          type="email"
+          placeholder="Your Email"
+          value={bookingData.email}
+          onChange={(e) =>
+            setBookingData({ ...bookingData, email: e.target.value })
+          }
+          required
+        />
+
+        <input
+          type="date"
+          value={bookingData.date}
+          onChange={(e) =>
+            setBookingData({ ...bookingData, date: e.target.value })
+          }
+          required
+        />
+
+        <select
+          value={selectedPlace}
+          onChange={(e) => setSelectedPlace(e.target.value)}
+          required
+        >
+          <option value="">Select Destination</option>
+
+          {destinations.map((dest) => (
+            <option key={dest._id} value={dest.name}>
+              {dest.name}
+            </option>
+          ))}
+        </select>
+
+        <div className="modal-buttons">
+
+          <button
+            type="button"
+            onClick={() => setShowModal(false)}
+          >
+            Cancel
+          </button>
+
+          <button type="submit" disabled={bookingLoading}>
+            {bookingLoading ? "Booking..." : "Confirm Booking"}
+          </button>
+
         </div>
-      )}
+      </form>
+    </div>
+  </div>
+)}
+
     </main>
   );
 }
