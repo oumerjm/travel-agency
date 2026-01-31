@@ -1,79 +1,110 @@
-/* CONTACT PAGE */
-
-.contact-hero {
-  height: 40vh;
-  background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
-    url("/images/newlanding.jpg") center/cover no-repeat;
+/* Container styling */
+.contact-hero-section {
+  position: relative;
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
   color: white;
-  text-align: center;
+  
+  /* --- ADD YOUR BACKGROUND IMAGE HERE --- */
+  background-image: url('images/lake.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.contact-hero h1 {
-  font-size: 42px;
-  margin-bottom: 10px;
+/* Dark overlay to make text pop */
+.contact-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Adjust 0.4 for darkness */
+  z-index: 1;
 }
 
 .contact-container {
-  display: flex;
-  justify-content: center;
-  padding: 50px 20px;
-}
-
-.contact-card {
+  position: relative;
+  z-index: 2;
   width: 100%;
-  max-width: 520px;
-  background: white;
-  padding: 28px;
-  border-radius: 14px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  max-width: 1100px;
 }
 
-.contact-card h2 {
+.contact-title {
   text-align: center;
-  margin-bottom: 20px;
+  font-size: 3rem;
+  margin-bottom: 50px;
+  font-weight: bold;
 }
 
-.contact-form .form-group {
+.contact-content {
   display: flex;
-  flex-direction: column;
-  margin-bottom: 16px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 50px;
 }
 
-.contact-form label {
-  margin-bottom: 6px;
-  font-weight: 500;
+/* Form Styles */
+.form-column {
+  flex: 1;
+  min-width: 300px;
 }
 
-.contact-form input,
-.contact-form textarea {
-  padding: 10px 12px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  outline: none;
-  font-size: 15px;
+.form-column h2, .info-column h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
 }
 
-.contact-form input:focus,
-.contact-form textarea:focus {
-  border-color: #0d6efd;
-}
-
-.contact-btn {
+.form-column input, .form-column textarea {
   width: 100%;
-  padding: 12px;
-  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
   border: none;
-  background: #0d6efd;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 10px;
+  font-size: 1rem;
 }
 
-.contact-btn:hover {
-  background: #0b5ed7;
+.form-column button {
+  width: 100%;
+  padding: 15px;
+  background-color: #2563eb; /* Blue color */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.form-column button:hover {
+  background-color: #1d4ed8;
+}
+
+/* Info Styles */
+.info-column {
+  flex: 0 1 350px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+  font-size: 1.2rem;
+}
+
+.icon {
+  margin-right: 15px;
+  color: #3b82f6; /* Icon blue */
+  font-size: 1.5rem;
+}
+
+/* Responsive adjustment */
+@media (max-width: 768px) {
+  .contact-content {
+    flex-direction: column;
+  }
 }

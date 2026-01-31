@@ -14,9 +14,9 @@ function Navbar() {
       ></i>
 
       <div className={`nav-links ${open ? "active" : ""}`}>
-        <Link href="/">Home</Link>
-        <Link href="/destinations">Destinations</Link>
-        <Link href="/contact">Contact us</Link>
+        <Link to="/">Home</Link>
+        <Link to="/destinations">Destinations</Link>
+        <Link to="/contact">Contact us</Link>
       </div>
     </nav>
   );
